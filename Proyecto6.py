@@ -118,8 +118,30 @@ while menu != "5" :
         ax1.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
         plt.show()
     elif menu == "4" :
-       print("Holito")
-    elif menu == "5" :
-        print("Hello")
+        comuna = input("Ingrese una comuna: ")
+        if(comuna.isnumeric() == True) :
+            for i in range(len(datos)) :
+                if datos[i][3] == comuna :
+                    print("Comuna encontrada: ", datos[i][2])
+                    bandera1 = True
+                    fila = i
+            if bandera1 == False :
+                print("Codigo invalido")
+        else :
+            for i in range(len(datos)) :
+                if datos[i][2] == comuna :
+                    print("Comuna confirmada, codigo es: ", datos[i][3])
+                    bandera2 = True
+                    fila = i
+            if bandera2 == False :
+                print("Nombre de la comuna invalido")
+        if bandera1 == True or bandera2 == True :
+            promedio = 0.0
+            for i in range(5, len(datos[fila])) :
+                promedio = promedio + float(datos[fila][i])
+            promedio = int(promedio / len(datos[fila]))
+            print("el promedio de pacientes infectados por mes en ", datos[fila][2], " es: ", promedio, " pacientes.")
+        elif menu == "5" :
+          print("Fin del programa")
     else :
        print("Opción invalida")
